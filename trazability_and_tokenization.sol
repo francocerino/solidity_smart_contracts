@@ -6,7 +6,6 @@ pragma solidity ^0.8.4;
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import "@openzeppelin/contracts/token/ERC20/extensions/ERC20Burnable.sol";
 
-
 contract GreenHydrogenContract is ERC20, ERC20Burnable {
     
     // cambiar por las address a utilizar antes de desplegar el contrato
@@ -22,11 +21,11 @@ contract GreenHydrogenContract is ERC20, ERC20Burnable {
 
     struct TRU{
         uint id; // id = orden en la lista "allTRU"
-        string[] owner; // propietario 
-        string[] holder; // persona física que porta el asset. Transportista por ejemplo.
-        string hydrogenType;// green, yellow, pink.
-        string assetState; // Hidrógeno o amoníaco. 
-        uint quantity; // masa total del lote de Hidrógeno.
+        string[] owner; // propietario del activo.
+        string[] holder; // persona física que porta el asset. Un ejemplo es el transportista.
+        string hydrogenType; // "green", "yellow", "pink".
+        string assetState; // Hidrógeno ("H") o amoníaco ("NH3"). 
+        uint quantity; // masa total efectiva de Hidrógeno en el lote.
     }
 
     TRU[] public allTRU;
@@ -68,7 +67,7 @@ contract GreenHydrogenContract is ERC20, ERC20Burnable {
 	            keccak256(abi.encodePacked((_assetState))) == keccak256(abi.encodePacked(("NH3")))
 	            );  
 	
-	    string[] memory _producer = new string[](1); // ver esta línea
+	    string[] memory _producer = new string[](1);
 	    _producer[0] = "producer";
 
 	    allTRU.push(TRU(allTRU.length,_producer,_producer,_hydrogenType, _assetState, _quantity));
